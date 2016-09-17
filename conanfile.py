@@ -128,7 +128,7 @@ class BoostConan(ConanFile):
         else:
             deps_options = ""
             
-        full_command = "cd %s && %s %s -j4 --abbreviate-paths --without-python %s" % (self.FOLDER_NAME, command, b2_flags, deps_options)
+        full_command = "cd %s && %s %s -j4 --abbreviate-paths %s" % (self.FOLDER_NAME, command, b2_flags, deps_options)
         self.output.warn(full_command)
         self.run(full_command)#, output=False)
         
@@ -172,7 +172,7 @@ class BoostConan(ConanFile):
         libs = ("unit_test_framework prg_exec_monitor test_exec_monitor atomic container date_time exception filesystem "
                 "graph iostreams locale log_setup log math_c99 math_c99f math_c99l math_tr1 "
                 "math_tr1f math_tr1l program_options random regex wserialization serialization "
-                "signals coroutine context wave timer thread chrono system").split()
+                "signals coroutine context wave timer thread chrono system python").split()
         
         if self.settings.compiler != "Visual Studio":
             self.cpp_info.libs.extend(["boost_%s" % lib for lib in libs])
